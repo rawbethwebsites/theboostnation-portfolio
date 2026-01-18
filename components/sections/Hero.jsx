@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import SplitText from '../common/SplitText'
+import GhostCursor from '../common/GhostCursor'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -30,6 +31,7 @@ export default function Hero() {
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden" id="hero">
+      <GhostCursor />
       <div className="absolute inset-0 hero-bg bg-gradient-to-r from-blue-500 to-teal-400" style={{backgroundImage:'radial-gradient(circle at 20% -10%, rgba(255,255,255,0.2), transparent 40%), radial-gradient(circle at 80% 110%, rgba(255,255,255,0.15), transparent 40%)'}}/>
       <div className="container mx-auto px-6 relative z-10 grid gap-6 items-center" style={{maxWidth: 1000}}>
         <div className="text-left">

@@ -15,7 +15,8 @@
     "next": "latest",
     "react": "18.x",
     "react-bits": "^1.0.5",
-    "react-dom": "18.x"
+    "react-dom": "18.x",
+    "three": "^0.182.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
