@@ -1,19 +1,18 @@
 import React, { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import { BlurText } from 'react-bits'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Hero() {
   const ref = useRef(null)
-  const headlineRef = useRef(null)
   const logosRef = useRef(null)
 
   useEffect(() => {
     if (!ref.current) return
     const tl = gsap.timeline()
     // Split headline lines into spans for stagger
-    tl.fromTo(headlineRef.current.querySelectorAll('.line'), {opacity:0, y:20}, {opacity:1, y:0, stagger:0.1, duration:0.5}, 0)
     tl.fromTo(logosRef.current, {opacity:0}, {opacity:1, duration:0.6}, '+=0.5')
 
     // Parallax background effect
@@ -33,9 +32,17 @@ export default function Hero() {
     <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden" id="hero">
       <div className="absolute inset-0 hero-bg bg-gradient-to-r from-blue-500 to-teal-400" style={{backgroundImage:'radial-gradient(circle at 20% -10%, rgba(255,255,255,0.2), transparent 40%), radial-gradient(circle at 80% 110%, rgba(255,255,255,0.15), transparent 40%)'}}/>
       <div className="container mx-auto px-6 relative z-10 grid gap-6 items-center" style={{maxWidth: 1000}}>
-        <div ref={headlineRef} className="text-left">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-2 line">Creative Work That Converts</h1>
-          <p className="text-xl md:text-2xl text-gray-700 line">We design digital products that drive results for creators and businesses</p>
+        <div className="text-left">
+          <BlurText
+            as="h1"
+            className="text-4xl md:text-5xl font-extrabold mb-2 line"
+            animateBy="words"
+            direction="top"
+            delay={200}
+            stepDuration={0.35}
+          >
+            Welcome to The Boost Nation
+          </BlurText>
         </div>
         <div className="flex flex-wrap items-center justify-between mt-4" aria-label="hero-actions">
           <button className="px-6 py-3 bg-brand text-white rounded-md hover:bg-brand-dark">View Our Work</button>
