@@ -46,7 +46,7 @@ export default function Hero() {
           />
         </div>
         <div className="flex flex-wrap items-center justify-between mt-4" aria-label="hero-actions">
-          <button className="px-6 py-3 bg-brand text-white rounded-md hover:bg-brand-dark">View Our Work</button>
+          <button className="cursor-target px-6 py-3 bg-brand text-white rounded-md hover:bg-brand-dark">View Our Work</button>
           <div ref={logosRef} className="flex gap-6 opacity-0">
             {Array.from({ length: 5 }).map((_, i) => (
               <div key={i} className="w-20 h-8 bg-gray-200" aria-label={`client ${i+1}`} />

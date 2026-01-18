@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import Button from '../ui/Button'
+import ElectricBorder from '../common/ElectricBorder'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -35,10 +36,17 @@ export default function Product(){
             <li className="opacity-0" ref={el => featuresRef.current.push(el)}>Fully Mobile Responsive</li>
             <li className="opacity-0" ref={el => featuresRef.current.push(el)}>GSAP Animations Included</li>
           </ul>
-          <div className="flex gap-4 items-center">
-            <Button>Get This Template</Button>
-            <a href="#" className="text-brand">Schedule Consultation</a>
-          </div>
+          <ElectricBorder color="#7df9ff" speed={1} chaos={0.5} style={{ borderRadius: 16 }}>
+            <div className="p-4">
+              <div className="flex justify-between items-center">
+                <div>
+                  <p className="text-2xl font-bold">$99</p>
+                  <p className="text-sm text-gray-400">One-time purchase</p>
+                </div>
+                <Button>Get This Template</Button>
+              </div>
+            </div>
+          </ElectricBorder>
         </div>
       </div>
       <blockquote className="mt-6 mx-auto max-w-3xl text-gray-700 italic">"Finally a portfolio that actually showcases my work professionally" - Sarah, Designer</blockquote>
