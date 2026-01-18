@@ -33,7 +33,7 @@ export default function Hero() {
     <section ref={ref} className="relative h-screen flex items-center justify-center overflow-hidden" id="hero" style={{ height: '100vh' }}>
       <div style={{ height: '100vh', position: 'relative' }}>
         <GhostCursor
-          color="#7c3aed"
+          color="#1ac80e"
         />
       </div>
       <div className="absolute inset-0 hero-bg bg-gradient-to-br from-brand via-brand-light to-teal-500" style={{backgroundImage:'radial-gradient(circle at 20% -10%, rgba(255,255,255,0.1), transparent 50%), radial-gradient(circle at 80% 110%, rgba(255,255,255,0.08), transparent 50%)'}}/>
