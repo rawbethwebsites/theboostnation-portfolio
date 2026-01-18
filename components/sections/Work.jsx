@@ -10,7 +10,7 @@ export default function Work(){
         maxVerticalRotationDeg={0}
         segments={34}
         dragDampening={2}
-        grayscale
+        grayscale={false}
       />
     </section>
   )
