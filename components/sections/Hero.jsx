@@ -30,8 +30,12 @@ export default function Hero() {
   }, [])
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden" id="hero">
-      <GhostCursor />
+    <section ref={ref} className="relative h-screen flex items-center justify-center overflow-hidden" id="hero" style={{ height: '100vh' }}>
+      <div style={{ height: '100vh', position: 'relative' }}>
+        <GhostCursor
+          color="#1ac80e"
+        />
+      </div>
       <div className="absolute inset-0 hero-bg bg-gradient-to-r from-blue-500 to-teal-400" style={{backgroundImage:'radial-gradient(circle at 20% -10%, rgba(255,255,255,0.2), transparent 40%), radial-gradient(circle at 80% 110%, rgba(255,255,255,0.15), transparent 40%)'}}/>
       <div className="container mx-auto px-6 relative z-10 grid gap-6 items-center" style={{maxWidth: 1000}}>
         <div className="text-left">
