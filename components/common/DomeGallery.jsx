@@ -3,32 +3,36 @@ import { useGesture } from '@use-gesture/react';
 
 const DEFAULT_IMAGES = [
   {
-    src: '/images/projects/project 1.jpg',
+    src: '/images/projects/project1.jpg',
     alt: 'Project 1'
   },
   {
-    src: '/images/projects/project 2.jpg',
+    src: '/images/projects/project2.jpg',
     alt: 'Project 2'
   },
   {
-    src: '/images/projects/project 3.jpg',
+    src: '/images/projects/project3.jpg',
     alt: 'Project 3'
   },
   {
-    src: '/images/projects/project 4.jpg',
+    src: '/images/projects/project4.jpg',
     alt: 'Project 4'
   },
   {
-    src: '/images/projects/project 5.jpg',
+    src: '/images/projects/project5.jpg',
     alt: 'Project 5'
   },
   {
-    src: '/images/projects/project 6.jpg',
+    src: '/images/projects/project6.jpg',
     alt: 'Project 6'
   },
   {
-    src: '/images/projects/project 7.jpg',
+    src: '/images/projects/project7.jpg',
     alt: 'Project 7'
+  },
+  {
+    src: '/images/projects/project8.jpg',
+    alt: 'Project 8'
   }
 ];
 
