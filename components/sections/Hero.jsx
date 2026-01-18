@@ -49,7 +49,7 @@ export default function Hero() {
     <section ref={ref} className="relative h-screen flex items-center justify-center overflow-hidden" id="hero" style={{ height: '100vh' }}>
       <div style={{ width: '100%', height: '100vh', position: 'absolute', inset: 0 }}>
         <GridDistortion
-          imageSrc="https://picsum.photos/1920/1080?grayscale"
+          imageSrc="/images/hero-bg.jpg.png"
           grid={10}
           mouse={0.1}
           strength={0.15}
