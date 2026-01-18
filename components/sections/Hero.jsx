@@ -37,29 +37,57 @@ export default function Hero() {
         />
       </div>
       <div className="absolute inset-0 hero-bg bg-gradient-to-r from-blue-500 to-teal-400" style={{backgroundImage:'radial-gradient(circle at 20% -10%, rgba(255,255,255,0.2), transparent 40%), radial-gradient(circle at 80% 110%, rgba(255,255,255,0.15), transparent 40%)'}}/>
-      <div className="container mx-auto px-6 relative z-10 grid gap-6 items-center" style={{maxWidth: 1000}}>
-        <div className="text-left">
+      <div className="container mx-auto px-6 relative z-10 grid gap-8 items-center text-center" style={{maxWidth: 1200}}>
+        <div>
           <SplitText
-            text="Welcome to The Boost Nation"
+            text="Creative Agency Portfolio Template"
             tag="h1"
-            className="text-4xl md:text-5xl font-extrabold mb-2 line"
+            className="text-5xl md:text-7xl lg:text-8xl font-black mb-4 text-white drop-shadow-2xl"
             splitType="chars"
-            from={{ opacity: 0, y: 40 }}
+            from={{ opacity: 0, y: 60 }}
             to={{ opacity: 1, y: 0 }}
             delay={50}
-            duration={0.6}
+            duration={0.8}
             ease="power3.out"
           />
+          <SplitText
+            text="Built for Agencies & Creators"
+            tag="h2"
+            className="text-xl md:text-3xl lg:text-4xl font-light mb-6 text-white/90 drop-shadow-lg"
+            splitType="words"
+            from={{ opacity: 0, y: 30 }}
+            to={{ opacity: 1, y: 0 }}
+            delay={100}
+            duration={0.6}
+            ease="power2.out"
+          />
         </div>
-        <div className="flex flex-wrap items-center justify-between mt-4" aria-label="hero-actions">
-          <button className="cursor-target px-6 py-3 bg-brand text-white rounded-md hover:bg-brand-dark">View Our Work</button>
-          <div ref={logosRef} className="flex gap-6 opacity-0">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className="w-20 h-8 bg-gray-200" aria-label={`client ${i+1}`} />
-            ))}
+
+        <div className="flex flex-col items-center gap-6">
+          <div className="text-white/80 text-lg md:text-xl max-w-2xl leading-relaxed drop-shadow-md">
+            Showcase your creative work with a stunning, fully customizable portfolio template.
+            Designed to convert visitors into clients and collaborators.
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-8 mt-4">
+            <button className="cursor-target px-8 py-4 bg-white text-brand font-semibold text-lg rounded-lg hover:bg-gray-100 hover:scale-105 transform transition-all duration-200 shadow-xl">
+              View Our Work
+            </button>
+            <div className="text-white/70 text-sm md:text-base">
+              <div className="font-bold text-2xl md:text-3xl text-white mb-1">50+</div>
+              <div>Projects Delivered</div>
+            </div>
           </div>
         </div>
-        <div className="mt-6 text-sm text-gray-700">50+ Projects Delivered</div>
+
+        <div ref={logosRef} className="flex flex-wrap items-center justify-center gap-6 opacity-0 mt-8">
+          <div className="text-white/60 text-sm font-medium">Trusted by:</div>
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div key={i} className="w-16 h-12 md:w-20 md:h-14 bg-white/20 backdrop-blur-sm rounded-lg border border-white/30 flex items-center justify-center">
+              <span className="text-white/70 text-xs font-semibold">Client {i+1}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
