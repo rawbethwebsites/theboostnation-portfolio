@@ -11,6 +11,7 @@ export default function Work(){
         segments={34}
         dragDampening={2}
         grayscale={false}
+        bgColor="#000000"
       />
     </section>
   )
