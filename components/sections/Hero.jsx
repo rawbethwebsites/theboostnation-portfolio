@@ -12,21 +12,37 @@ export default function Hero() {
 
   useEffect(() => {
     if (!ref.current) return
-    const tl = gsap.timeline()
-    // Split headline lines into spans for stagger
-    tl.fromTo(logosRef.current, {opacity:0}, {opacity:1, duration:0.6}, '+=0.5')
 
-    // Parallax background effect
-    gsap.to(ref.current.querySelector('.hero-bg'), {
-      y: -60,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: ref.current,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true
+    // Animate client logos on scroll
+    gsap.fromTo(logosRef.current,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: ref.current,
+          start: 'top 80%',
+          toggleActions: 'play none none reverse'
+        }
       }
-    })
+    )
+
+    // Parallax background effect (if .hero-bg exists)
+    const heroBg = ref.current.querySelector('.hero-bg')
+    if (heroBg) {
+      gsap.to(heroBg, {
+        y: -60,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: ref.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true
+        }
+      })
+    }
   }, [])
 
   return (
@@ -38,11 +54,14 @@ export default function Hero() {
           linesColor="#2563eb"
           gridScale={0.1}
           scanColor="#10b981"
-          scanOpacity={0.4}
+          scanOpacity={0.6}
           enablePost
           bloomIntensity={0.6}
           chromaticAberration={0.002}
           noiseIntensity={0.01}
+          scanDuration={4.0}
+          scanDelay={1.0}
+          scanGlow={1.0}
         />
       </div>
       <div className="container mx-auto px-6 relative z-10 grid gap-8 items-center text-center" style={{maxWidth: 1200}}>
