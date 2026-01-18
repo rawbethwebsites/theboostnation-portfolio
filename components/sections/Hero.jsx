@@ -59,8 +59,8 @@ export default function Hero() {
           bloomIntensity={0.6}
           chromaticAberration={0.002}
           noiseIntensity={0.01}
-          scanDuration={4.0}
-          scanDelay={1.0}
+          scanDuration={3.0}
+          scanDelay={0.0}
           scanGlow={1.0}
         />
       </div>
