@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
-import { BlurText } from 'react-bits'
+import SplitText from '../common/SplitText'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -33,16 +33,17 @@ export default function Hero() {
       <div className="absolute inset-0 hero-bg bg-gradient-to-r from-blue-500 to-teal-400" style={{backgroundImage:'radial-gradient(circle at 20% -10%, rgba(255,255,255,0.2), transparent 40%), radial-gradient(circle at 80% 110%, rgba(255,255,255,0.15), transparent 40%)'}}/>
       <div className="container mx-auto px-6 relative z-10 grid gap-6 items-center" style={{maxWidth: 1000}}>
         <div className="text-left">
-          <BlurText
-            as="h1"
+          <SplitText
+            text="Welcome to The Boost Nation"
+            tag="h1"
             className="text-4xl md:text-5xl font-extrabold mb-2 line"
-            animateBy="words"
-            direction="top"
-            delay={200}
-            stepDuration={0.35}
-          >
-            Creative Work That Converts to THE BOOST NATION
-          </BlurText>
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            delay={50}
+            duration={0.6}
+            ease="power3.out"
+          />
         </div>
         <div className="flex flex-wrap items-center justify-between mt-4" aria-label="hero-actions">
           <button className="px-6 py-3 bg-brand text-white rounded-md hover:bg-brand-dark">View Our Work</button>
