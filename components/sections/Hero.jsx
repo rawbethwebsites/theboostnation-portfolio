@@ -41,7 +41,7 @@ export default function Hero() {
             delay={200}
             stepDuration={0.35}
           >
-            Welcome to The Boost Nation
+            Creative Work That Converts to THE BOOST NATION
           </BlurText>
         </div>
         <div className="flex flex-wrap items-center justify-between mt-4" aria-label="hero-actions">
