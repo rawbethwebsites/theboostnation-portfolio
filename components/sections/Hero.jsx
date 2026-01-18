@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import SplitText from '../common/SplitText'
-import { GridScan } from '../common/GridScan'
+import GridDistortion from '../common/GridDistortion'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -48,20 +48,12 @@ export default function Hero() {
   return (
     <section ref={ref} className="relative h-screen flex items-center justify-center overflow-hidden" id="hero" style={{ height: '100vh' }}>
       <div style={{ width: '100%', height: '100vh', position: 'absolute', inset: 0 }}>
-        <GridScan
-          sensitivity={0.55}
-          lineThickness={1}
-          linesColor="#2563eb"
-          gridScale={0.1}
-          scanColor="#10b981"
-          scanOpacity={0.6}
-          enablePost
-          bloomIntensity={0.6}
-          chromaticAberration={0.002}
-          noiseIntensity={0.01}
-          scanDuration={3.0}
-          scanDelay={0.0}
-          scanGlow={1.0}
+        <GridDistortion
+          imageSrc="https://picsum.photos/1920/1080?grayscale"
+          grid={10}
+          mouse={0.1}
+          strength={0.15}
+          relaxation={0.9}
         />
       </div>
       <div className="container mx-auto px-6 relative z-10 grid gap-8 items-center text-center" style={{maxWidth: 1200}}>
