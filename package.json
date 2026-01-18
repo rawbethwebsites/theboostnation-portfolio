@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "gsap": "^3.12.5",
+    "motion": "^12.26.2",
     "next": "latest",
     "react": "18.x",
+    "react-bits": "^1.0.5",
     "react-dom": "18.x"
   },
   "devDependencies": {
