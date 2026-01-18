@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import SplitText from '../common/SplitText'
-import GhostCursor from '../common/GhostCursor'
+import { GridScan } from '../common/GridScan'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -31,10 +31,20 @@ export default function Hero() {
 
   return (
     <section ref={ref} className="relative h-screen flex items-center justify-center overflow-hidden" id="hero" style={{ height: '100vh' }}>
-      <GhostCursor
-        color="#1ac80e"
-      />
-      <div className="absolute inset-0 hero-bg bg-gradient-to-br from-brand via-brand-light to-teal-500" style={{backgroundImage:'radial-gradient(circle at 20% -10%, rgba(255,255,255,0.1), transparent 50%), radial-gradient(circle at 80% 110%, rgba(255,255,255,0.08), transparent 50%)'}}/>
+      <div style={{ width: '100%', height: '100vh', position: 'absolute', inset: 0 }}>
+        <GridScan
+          sensitivity={0.55}
+          lineThickness={1}
+          linesColor="#392e4e"
+          gridScale={0.1}
+          scanColor="#FF9FFC"
+          scanOpacity={0.4}
+          enablePost
+          bloomIntensity={0.6}
+          chromaticAberration={0.002}
+          noiseIntensity={0.01}
+        />
+      </div>
       <div className="container mx-auto px-6 relative z-10 grid gap-8 items-center text-center" style={{maxWidth: 1200}}>
         <div>
           <SplitText
