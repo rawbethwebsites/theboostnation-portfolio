@@ -19,8 +19,8 @@ export default function Projects(){
         Our Projects
       </div>
       <DomeGallery
-        fit={0.5}
-        minRadius={300}
+        fit={0.8}
+        minRadius={600}
         maxVerticalRotationDeg={0}
         segments={34}
         dragDampening={2}
