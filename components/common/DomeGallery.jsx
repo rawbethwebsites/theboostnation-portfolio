@@ -1,7 +1,6 @@
 import { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import { useGesture } from '@use-gesture/react';
 import './DomeGallery.css';
-import './DomeGallery.css';
 
 const DEFAULT_IMAGES = [
   {
