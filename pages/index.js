@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 
 import Hero from '../components/sections/Hero'
 import Services from '../components/sections/Services'
+import Projects from '../components/sections/Projects'
 import Process from '../components/sections/Process'
 import Product from '../components/sections/Product'
 import Footer from '../components/sections/Footer'
@@ -18,6 +19,7 @@ const Home = () => {
       </Head>
       <Hero/>
       <Services/>
+      <Projects/>
       <Process/>
       <Product/>
       <Footer/>
