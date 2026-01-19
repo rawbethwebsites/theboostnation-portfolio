@@ -91,8 +91,9 @@
     transform: translateZ(0);
   }
 
-  .itemImage:focus {
-    outline: none;
+  .itemImage:focus-visible {
+    outline: 2px solid #4A90E2; /* Accessible focus indicator */
+    outline-offset: 2px;
   }
 
   .itemImage img {
