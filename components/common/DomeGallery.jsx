@@ -32,7 +32,7 @@ const DEFAULT_IMAGES = [
     alt: 'Project 7'
   },
   {
-    src: '/images/projects/project 8.png',
+    src: '/images/projects/project 8.jpg',
     alt: 'Project 8'
   }
 ];
