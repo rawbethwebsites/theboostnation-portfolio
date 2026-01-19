@@ -1,5 +1,7 @@
 import React from 'react'
 
+const NAV_ITEMS = ['Home','Services','Portfolio','Blog','Contact'];
+
 export default function Footer(){
   return (
     <footer className="bg-brand text-white pt-8 pb-12">
@@ -9,7 +11,7 @@ export default function Footer(){
           <span className="font-bold text-xl">The Boost Nation</span>
         </div>
         <nav className="flex flex-wrap gap-4">
-          {['Home','Services','Portfolio','Blog','Contact'].map((t,i)=> (
+          {NAV_ITEMS.map((t,i)=> (
             <a key={i} href={`#${t.toLowerCase()}`} className="hover:underline">{t}</a>
           ))}
         </nav>
