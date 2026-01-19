@@ -119,10 +119,10 @@
     overflow: hidden;
     backface-visibility: hidden;
     transition: transform 300ms;
-    cursor: pointer;
+    cursor: default;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
-    pointer-events: auto;
+    pointer-events: none;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
   }

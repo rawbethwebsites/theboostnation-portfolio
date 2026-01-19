@@ -624,11 +624,6 @@ export default function DomeGallery({
               >
                 <div
                   className={styles.itemImage}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={it.alt || 'Open image'}
-                  onClick={onTileClick}
-                  onPointerUp={onTilePointerUp}
                 >
                   <img src={it.src} draggable={false} alt={it.alt} />
                 </div>
