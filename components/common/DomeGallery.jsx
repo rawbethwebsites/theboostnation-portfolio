@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import { useGesture } from '@use-gesture/react';
-import './DomeGallery.css';
+import styles from './DomeGallery.module.css';
 
 const DEFAULT_IMAGES = [
   {
@@ -216,7 +216,7 @@ export default function DomeGallery({
       root.style.setProperty('--image-filter', grayscale ? 'grayscale(1)' : 'none');
       applyTransform(rotationRef.current.x, rotationRef.current.y);
 
-      const enlargedOverlay = viewerRef.current?.querySelector('.enlarge');
+      const enlargedOverlay = viewerRef.current?.querySelector('[data-enlarge]');
       if (enlargedOverlay && frameRef.current && mainRef.current) {
         const frameR = frameRef.current.getBoundingClientRect();
         const mainR = mainRef.current.getBoundingClientRect();
@@ -360,9 +360,9 @@ export default function DomeGallery({
       const el = focusedElRef.current;
       if (!el) return;
       const parent = el.parentElement;
-      const overlay = viewerRef.current?.querySelector('.enlarge');
+      const overlay = viewerRef.current?.querySelector('[data-enlarge]');
       if (!overlay) return;
-      const refDiv = parent.querySelector('.item__image--reference');
+      const refDiv = parent.querySelector('[data-reference]');
       const originalPos = originalTilePositionRef.current;
       if (!originalPos) {
         overlay.remove();
@@ -392,7 +392,7 @@ export default function DomeGallery({
         height: currentRect.height
       };
       const animatingOverlay = document.createElement('div');
-      animatingOverlay.className = 'enlarge-closing';
+      animatingOverlay.className = styles.enlargeClosing;
       animatingOverlay.style.cssText = `position:absolute;left:${overlayRelativeToRoot.left}px;top:${overlayRelativeToRoot.top}px;width:${overlayRelativeToRoot.width}px;height:${overlayRelativeToRoot.height}px;z-index:9999;border-radius: var(--enlarge-radius, 32px);overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:all ${enlargeTransitionMs}ms ease-out;pointer-events:none;margin:0;transform:none;`;
       const originalImg = overlay.querySelector('img');
       if (originalImg) {
@@ -466,7 +466,8 @@ export default function DomeGallery({
       parent.style.setProperty('--rot-y-delta', `${rotY}deg`);
       parent.style.setProperty('--rot-x-delta', `${rotX}deg`);
       const refDiv = document.createElement('div');
-      refDiv.className = 'item__image item__image--reference';
+      refDiv.className = `${styles.itemImage} ${styles.itemImageReference}`;
+      refDiv.setAttribute('data-reference', 'true');
       refDiv.style.opacity = '0';
       refDiv.style.transform = `rotateX(${-parentRot.rotateX}deg) rotateY(${-parentRot.rotateY}deg)`;
       parent.appendChild(refDiv);
@@ -489,7 +490,8 @@ export default function DomeGallery({
       el.style.visibility = 'hidden';
       el.style.zIndex = 0;
       const overlay = document.createElement('div');
-      overlay.className = 'enlarge';
+      overlay.className = styles.enlarge;
+      overlay.setAttribute('data-enlarge', 'true');
       overlay.style.position = 'absolute';
       overlay.style.left = frameR.left - mainR.left + 'px';
       overlay.style.top = frameR.top - mainR.top + 'px';
@@ -590,7 +592,7 @@ export default function DomeGallery({
   return (
     <div
       ref={rootRef}
-      className="sphere-root"
+      className={styles.sphereRoot}
       style={{
         ['--segments-x']: segments,
         ['--segments-y']: segments,
@@ -600,13 +602,13 @@ export default function DomeGallery({
         ['--image-filter']: grayscale ? 'grayscale(1)' : 'none'
       }}
     >
-      <main ref={mainRef} className="sphere-main">
-        <div className="stage">
-          <div ref={sphereRef} className="sphere">
+      <main ref={mainRef} className={styles.sphereMain}>
+        <div className={styles.stage}>
+          <div ref={sphereRef} className={styles.sphere}>
             {items.map((it, i) => (
               <div
                 key={`${it.x},${it.y},${i}`}
-                className="item"
+                className={styles.item}
                 data-src={it.src}
                 data-offset-x={it.x}
                 data-offset-y={it.y}
@@ -620,7 +622,7 @@ export default function DomeGallery({
                 }}
               >
                 <div
-                  className="item__image"
+                  className={styles.itemImage}
                   role="button"
                   tabIndex={0}
                   aria-label={it.alt || 'Open image'}
@@ -634,14 +636,14 @@ export default function DomeGallery({
           </div>
         </div>
 
-        <div className="overlay" />
-        <div className="overlay overlay--blur" />
-        <div className="edge-fade edge-fade--top" />
-        <div className="edge-fade edge-fade--bottom" />
+        <div className={styles.overlay} />
+        <div className={`${styles.overlay} ${styles.overlayBlur}`} />
+        <div className={`${styles.edgeFade} ${styles.edgeFadeTop}`} />
+        <div className={`${styles.edgeFade} ${styles.edgeFadeBottom}`} />
 
-        <div className="viewer" ref={viewerRef}>
-          <div ref={scrimRef} className="scrim" />
-          <div ref={frameRef} className="frame" />
+        <div className={styles.viewer} ref={viewerRef}>
+          <div ref={scrimRef} className={styles.scrim} />
+          <div ref={frameRef} className={styles.frame} />
         </div>
       </main>
     </div>

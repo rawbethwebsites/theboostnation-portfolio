@@ -1,8 +1,8 @@
-.dg-scroll-lock {
+.dgScrollLock {
     overflow: hidden;
   }
-  
-  .sphere-root {
+
+  .sphereRoot {
     --radius: 600px;
     --viewer-pad: 120px;
     --segments-x: 35;
@@ -17,13 +17,13 @@
     touch-action: none;
     overflow: hidden;
   }
-  
-  .sphere-root[data-enlarging] .scrim {
+
+  .sphereRoot[data-enlarging] .scrim {
     opacity: 1;
     pointer-events: all;
   }
-  
-  .sphere-main {
+
+  .sphereMain {
     width: 100%;
     height: 100%;
     perspective: 1px;
@@ -31,7 +31,7 @@
     overflow: hidden;
     position: relative;
   }
-  
+
   .stage {
     position: absolute;
     inset: 0;
@@ -42,7 +42,7 @@
     transform: translateZ(calc(var(--radius) * 0.8));
     backface-visibility: hidden;
   }
-  
+
   .sphere {
     position: relative;
     width: 1px;
@@ -51,13 +51,13 @@
     will-change: transform;
     backface-visibility: hidden;
   }
-  
+
   .item {
     --rot-y: calc(var(--offset-x) * (360deg / var(--segments-x)));
     --rot-x: calc(var(--offset-y) * (360deg / var(--segments-y)));
     --item-width: calc(var(--radius) * (360 / var(--segments-x)) * 0.01745 * var(--item-size-x) * 0.85);
     --item-height: calc(var(--radius) * (360 / var(--segments-y)) * 0.01745 * var(--item-size-y) * 0.85);
-  
+
     position: absolute;
     width: var(--item-width);
     height: var(--item-height);
@@ -71,8 +71,8 @@
       rotateX(calc(var(--rot-x) + var(--rot-x-delta, 0deg))) translateZ(var(--radius));
     transition: transform 300ms ease;
   }
-  
-  .item__image {
+
+  .itemImage {
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
@@ -83,8 +83,8 @@
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
     transition: opacity 300ms ease-out;
   }
-  
-  .item__image img {
+
+  .itemImage img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -94,28 +94,28 @@
     filter: var(--image-filter);
     transition: filter 300ms ease-in-out;
   }
-  
-  .item__image:hover img,
-  .item__image:focus img {
+
+  .itemImage:hover img,
+  .itemImage:focus img {
     filter: none;
   }
-  
-  .item__image--reference {
+
+  .itemImageReference {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
   }
-  
+
   .overlay {
     position: absolute;
     inset: 0;
     pointer-events: none;
     z-index: 10;
   }
-  
-  .overlay--blur {
+
+  .overlayBlur {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     z-index: 20;
@@ -123,12 +123,12 @@
     transition: opacity 300ms ease;
     background-color: var(--overlay-blur-color);
   }
-  
-  .sphere-root[data-enlarging] .overlay--blur {
+
+  .sphereRoot[data-enlarging] .overlayBlur {
     opacity: 0.85;
   }
-  
-  .edge-fade {
+
+  .edgeFade {
     position: absolute;
     left: 0;
     right: 0;
@@ -136,17 +136,17 @@
     z-index: 10;
     pointer-events: none;
   }
-  
-  .edge-fade--top {
+
+  .edgeFadeTop {
     top: 0;
     background: linear-gradient(to bottom, var(--overlay-blur-color) 0%, transparent 100%);
   }
-  
-  .edge-fade--bottom {
+
+  .edgeFadeBottom {
     bottom: 0;
     background: linear-gradient(to top, var(--overlay-blur-color) 0%, transparent 100%);
   }
-  
+
   .viewer {
     position: absolute;
     inset: 0;
@@ -156,7 +156,7 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .scrim {
     position: absolute;
     inset: 0;
@@ -166,7 +166,7 @@
     pointer-events: none;
     z-index: 1;
   }
-  
+
   .frame {
     position: relative;
     width: clamp(250px, 100%, calc(100% - var(--viewer-pad) * 2));
@@ -175,29 +175,34 @@
     max-height: 700px;
     z-index: 2;
   }
-  
+
   .enlarge {
     border-radius: var(--enlarge-radius);
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   }
-  
+
   .enlarge img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     filter: none !important;
   }
-  
+
+  .enlargeClosing {
+    border-radius: var(--enlarge-radius);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+
   @media (max-width: 768px) {
-    .sphere-root {
+    .sphereRoot {
       --viewer-pad: 48px;
     }
   }
-  
+
   @media (max-width: 480px) {
-    .sphere-root {
+    .sphereRoot {
       --viewer-pad: 24px;
     }
   }
-  
