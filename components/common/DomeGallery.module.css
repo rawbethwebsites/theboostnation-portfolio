@@ -61,13 +61,13 @@
     position: absolute;
     width: var(--item-width);
     height: var(--item-height);
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
     margin-left: calc(var(--item-width) * -0.5);
     margin-top: calc(var(--item-height) * -0.5);
     transform-style: preserve-3d;
     backface-visibility: hidden;
-    transform: rotateY(calc(var(--rot-y) + var(--rot-y-delta, 0deg)))
+    transform: translate(-50%, -50%) rotateY(calc(var(--rot-y) + var(--rot-y-delta, 0deg)))
       rotateX(calc(var(--rot-x) + var(--rot-x-delta, 0deg))) translateZ(var(--radius));
     transition: transform 300ms ease;
   }
