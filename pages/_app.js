@@ -5,6 +5,7 @@ import '../components/common/GridScan.css'
 import '../components/common/GridDistortion.css'
 import '../components/common/FlowingMenu.css'
 import '../components/common/DomeGallery.module.css'
+import '../components/common/ScrollReveal.css'
 import TargetCursor from '../components/common/TargetCursor'
 
 export default function App({ Component, pageProps }) {
