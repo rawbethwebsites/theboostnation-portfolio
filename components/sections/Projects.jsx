@@ -3,7 +3,7 @@ import DomeGallery from '../DomeGallery'
 
 export default function Projects(){
   return (
-    <section id="projects" style={{ width: '100vw', height: '100vh', position: 'relative' }}>
+    <section id="projects" style={{ width: '100vw', height: '100vh', position: 'relative', backgroundColor: '#060010' }}>
       <div style={{
         position: 'absolute',
         top: '50px',
@@ -25,6 +25,8 @@ export default function Projects(){
         segments={34}
         dragDampening={2}
         grayscale={false}
+        imageBorderRadius="30px"
+        openedImageBorderRadius="30px"
       />
     </section>
   )

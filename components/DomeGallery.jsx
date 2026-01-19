@@ -617,8 +617,8 @@ export default function DomeGallery({
         <div className={`${styles.edgeFade} ${styles.edgeFadeTop}`} />
         <div className={`${styles.edgeFade} ${styles.edgeFadeBottom}`} />
 
+        <div ref={scrimRef} className={styles.scrim} />
         <div className={styles.viewer} ref={viewerRef}>
-          <div ref={scrimRef} className={styles.scrim} />
           <div ref={frameRef} className={styles.frame} />
         </div>
       </main>

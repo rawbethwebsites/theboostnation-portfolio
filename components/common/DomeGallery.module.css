@@ -169,9 +169,9 @@
   }
 
   .scrim {
-    position: absolute;
+    position: fixed;
     inset: 0;
-    z-index: 10;
+    z-index: 25;
     background: rgba(0, 0, 0, 0.8);
     pointer-events: none;
     opacity: 0;
