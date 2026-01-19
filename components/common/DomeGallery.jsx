@@ -1,37 +1,39 @@
 import { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import { useGesture } from '@use-gesture/react';
+import './DomeGallery.css';
+import './DomeGallery.css';
 
 const DEFAULT_IMAGES = [
   {
-    src: '/images/projects/project1.jpg',
+    src: '/images/projects/project 1.jpg',
     alt: 'Project 1'
   },
   {
-    src: '/images/projects/project2.jpg',
+    src: '/images/projects/project 2.jpg',
     alt: 'Project 2'
   },
   {
-    src: '/images/projects/project3.jpg',
+    src: '/images/projects/project 3.jpg',
     alt: 'Project 3'
   },
   {
-    src: '/images/projects/project4.jpg',
+    src: '/images/projects/project 4.jpg',
     alt: 'Project 4'
   },
   {
-    src: '/images/projects/project5.jpg',
+    src: '/images/projects/project 5.jpg',
     alt: 'Project 5'
   },
   {
-    src: '/images/projects/project6.jpg',
+    src: '/images/projects/project 6.jpg',
     alt: 'Project 6'
   },
   {
-    src: '/images/projects/project7.jpg',
+    src: '/images/projects/project 7.jpg',
     alt: 'Project 7'
   },
   {
-    src: '/images/projects/project8.jpg',
+    src: '/images/projects/project 8.png',
     alt: 'Project 8'
   }
 ];
