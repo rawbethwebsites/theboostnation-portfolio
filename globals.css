@@ -6,6 +6,14 @@
 html, body, #__next { height: 100%; }
 body { @apply bg-white text-gray-900; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; }
 
+/* Hide scrollbars */
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  scrollbar-width: none;
+}
+
 /* Simple animation helpers */
 .fade-in { opacity: 0; }
 .visible { opacity: 1; transition: opacity 600ms ease-out; }
