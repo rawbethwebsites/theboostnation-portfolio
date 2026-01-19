@@ -30,6 +30,42 @@
     pointer-events: all;
   }
 
+  .closeButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 35;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 300ms ease;
+    pointer-events: none;
+  }
+
+  .sphereRoot[data-enlarging] .closeButton {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .closeButton:hover {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .closeButton:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+
   .sphereMain {
     position: absolute;
     inset: 0;
@@ -172,11 +208,10 @@
     position: fixed;
     inset: 0;
     z-index: 25;
-    background: rgba(0, 0, 0, 0.8);
+    background: transparent;
     pointer-events: none;
     opacity: 0;
     transition: opacity 500ms ease;
-    backdrop-filter: blur(5px);
     cursor: pointer;
   }
 
