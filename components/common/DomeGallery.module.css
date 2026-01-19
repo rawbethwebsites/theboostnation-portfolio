@@ -3,19 +3,26 @@
   }
 
   .sphereRoot {
-    --radius: 600px;
-    --viewer-pad: 120px;
-    --segments-x: 35;
-    --segments-y: 5;
-    --overlay-blur-color: #060010;
-    --tile-radius: 30px;
-    --enlarge-radius: 30px;
-    --image-filter: grayscale(1);
     position: relative;
     width: 100%;
     height: 100%;
-    touch-action: none;
-    overflow: hidden;
+    --radius: 520px;
+    --viewer-pad: 72px;
+    --circ: calc(var(--radius) * 3.14);
+    --rot-y: calc((360deg / var(--segments-x)) / 2);
+    --rot-x: calc((360deg / var(--segments-y)) / 2);
+    --item-width: calc(var(--circ) / var(--segments-x));
+    --item-height: calc(var(--circ) / var(--segments-y));
+  }
+
+  .sphereRoot * {
+    box-sizing: border-box;
+  }
+
+  .sphere,
+  .item,
+  .itemImage {
+    transform-style: preserve-3d;
   }
 
   .sphereRoot[data-enlarging] .scrim {
@@ -24,162 +31,167 @@
   }
 
   .sphereMain {
-    width: 100%;
-    height: 100%;
-    perspective: 1000px;
-    transform-style: preserve-3d;
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
     overflow: hidden;
-    position: relative;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    background: transparent;
   }
 
   .stage {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform-style: preserve-3d;
-    transform: translateZ(0px);
-    backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    perspective: calc(var(--radius) * 2);
+    perspective-origin: 50% 50%;
+    contain: layout paint size;
   }
 
   .sphere {
-    position: relative;
-    width: 1px;
-    height: 1px;
-    transform-style: preserve-3d;
+    transform: translateZ(calc(var(--radius) * -1));
     will-change: transform;
-    backface-visibility: hidden;
-    transform: rotateX(0deg) rotateY(0deg);
   }
 
   .item {
-    --rot-y: calc(var(--offset-x) * (360deg / var(--segments-x)));
-    --rot-x: calc(var(--offset-y) * (360deg / var(--segments-y)));
-    --item-width: calc(var(--radius) * (360 / var(--segments-x)) * 0.01745 * var(--item-size-x) * 0.85);
-    --item-height: calc(var(--radius) * (360 / var(--segments-y)) * 0.01745 * var(--item-size-y) * 0.85);
-
+    width: calc(var(--item-width) * var(--item-size-x));
+    height: calc(var(--item-height) * var(--item-size-y));
     position: absolute;
-    width: var(--item-width);
-    height: var(--item-height);
-    top: 50%;
-    left: 50%;
-    margin-left: calc(var(--item-width) * -0.5);
-    margin-top: calc(var(--item-height) * -0.5);
-    transform-style: preserve-3d;
+    top: -999px;
+    bottom: -999px;
+    left: -999px;
+    right: -999px;
+    margin: auto;
+    transform-origin: 50% 50%;
     backface-visibility: hidden;
-    transform: translate(-50%, -50%) rotateY(calc(var(--rot-y) + var(--rot-y-delta, 0deg)))
-      rotateX(calc(var(--rot-x) + var(--rot-x-delta, 0deg))) translateZ(calc(var(--radius) * 0.5));
-    transition: transform 300ms ease;
+    transition: transform 300ms;
+    transform: rotateY(calc(var(--rot-y) * (var(--offset-x) + ((var(--item-size-x) - 1) / 2)) + var(--rot-y-delta, 0deg)))
+      rotateX(calc(var(--rot-x) * (var(--offset-y) - ((var(--item-size-y) - 1) / 2)) + var(--rot-x-delta, 0deg)))
+      translateZ(var(--radius));
   }
 
   .itemImage {
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    border-radius: var(--tile-radius);
+    position: absolute;
+    display: block;
+    inset: 10px;
+    border-radius: var(--tile-radius, 12px);
+    background: transparent;
     overflow: hidden;
+    backface-visibility: hidden;
+    transition: transform 300ms;
     cursor: pointer;
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
-    transition: opacity 300ms ease-out;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    pointer-events: auto;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  .itemImage:focus {
+    outline: none;
   }
 
   .itemImage img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    user-select: none;
-    -webkit-user-drag: none;
     pointer-events: none;
-    filter: var(--image-filter);
-    transition: filter 300ms ease-in-out;
+    backface-visibility: hidden;
+    filter: var(--image-filter, none);
   }
 
-  .itemImage:hover img,
-  .itemImage:focus img {
-    filter: none;
-  }
-
-  .itemImageReference {
+  .overlay,
+  .overlayBlur {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+    margin: auto;
+    z-index: 3;
+    pointer-events: none;
   }
 
   .overlay {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 10;
+    background-image: radial-gradient(rgba(235, 235, 235, 0) 65%, var(--overlay-blur-color, #060010) 100%);
   }
 
   .overlayBlur {
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    z-index: 20;
-    opacity: 0;
-    transition: opacity 300ms ease;
-    background-color: var(--overlay-blur-color);
-  }
-
-  .sphereRoot[data-enlarging] .overlayBlur {
-    opacity: 0.85;
+    -webkit-mask-image: radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, #060010) 90%);
+    mask-image: radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, #060010) 90%);
+    backdrop-filter: blur(3px);
   }
 
   .edgeFade {
     position: absolute;
     left: 0;
     right: 0;
-    height: 30%;
-    z-index: 10;
+    height: 120px;
+    z-index: 5;
     pointer-events: none;
+    background: linear-gradient(to bottom, transparent, var(--overlay-blur-color, #060010));
   }
 
   .edgeFadeTop {
     top: 0;
-    background: linear-gradient(to bottom, var(--overlay-blur-color) 0%, transparent 100%);
+    transform: rotate(180deg);
   }
 
   .edgeFadeBottom {
     bottom: 0;
-    background: linear-gradient(to top, var(--overlay-blur-color) 0%, transparent 100%);
   }
 
   .viewer {
     position: absolute;
     inset: 0;
-    z-index: 25;
+    z-index: 20;
     pointer-events: none;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: var(--viewer-pad);
+  }
+
+  .frame {
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: var(--enlarge-radius, 32px);
+    display: flex;
+  }
+
+  @media (max-aspect-ratio: 1/1) {
+    .frame {
+      height: auto;
+      width: 100%;
+    }
   }
 
   .scrim {
     position: absolute;
     inset: 0;
-    background: transparent;
-    opacity: 0;
-    transition: opacity 300ms ease-in-out;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.4);
     pointer-events: none;
-    z-index: 1;
+    opacity: 0;
+    transition: opacity 500ms ease;
+    backdrop-filter: blur(3px);
   }
 
-  .frame {
-    position: relative;
-    width: clamp(250px, 100%, calc(100% - var(--viewer-pad) * 2));
-    height: clamp(350px, 100%, calc(100% - var(--viewer-pad) * 2));
-    max-width: 500px;
-    max-height: 700px;
-    z-index: 2;
+  .sphereRoot[data-enlarging] .scrim {
+    opacity: 1;
+    pointer-events: all;
   }
 
   .enlarge {
-    border-radius: var(--enlarge-radius);
+    position: absolute;
+    z-index: 30;
+    border-radius: var(--enlarge-radius, 32px);
     overflow: hidden;
+    transition:
+      transform 500ms ease,
+      opacity 500ms ease;
+    transform-origin: top left;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   }
 
@@ -187,7 +199,11 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: none !important;
+    filter: var(--image-filter, none);
+  }
+
+  .sphereRoot .enlargeClosing img {
+    filter: var(--image-filter, none);
   }
 
   .enlargeClosing {
