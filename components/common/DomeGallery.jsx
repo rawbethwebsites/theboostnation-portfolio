@@ -84,15 +84,30 @@ function buildItems(pool, seg) {
 
   const usedImages = Array.from({ length: totalSlots }, (_, i) => normalizedImages[i % normalizedImages.length]);
 
+  const searchIndices = new Map();
+
   for (let i = 1; i < usedImages.length; i++) {
     if (usedImages[i].src === usedImages[i - 1].src) {
-      for (let j = i + 1; j < usedImages.length; j++) {
-        if (usedImages[j].src !== usedImages[i].src) {
+      const currentSrc = usedImages[i].src;
+      let startSearch = searchIndices.get(currentSrc) ?? (i + 1);
+
+      // Ensure we don't search backwards or overlap
+      if (startSearch <= i) startSearch = i + 1;
+
+      let found = false;
+      for (let j = startSearch; j < usedImages.length; j++) {
+        if (usedImages[j].src !== currentSrc) {
           const tmp = usedImages[i];
           usedImages[i] = usedImages[j];
           usedImages[j] = tmp;
+
+          searchIndices.set(currentSrc, j + 1);
+          found = true;
           break;
         }
+      }
+      if (!found) {
+        searchIndices.set(currentSrc, usedImages.length);
       }
     }
   }
