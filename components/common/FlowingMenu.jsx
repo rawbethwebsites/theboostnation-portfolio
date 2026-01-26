@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import { gsap } from 'gsap';
 
 function FlowingMenu({
@@ -133,6 +133,15 @@ function MenuItem({ link, text, image, speed, textColor, marqueeBgColor, marquee
       .to(marqueeInnerRef.current, { y: edge === 'top' ? '101%' : '-101%' }, 0);
   };
 
+  const marqueeParts = useMemo(() => {
+    return new Array(repetitions).fill(0).map((_, idx) => (
+      <div className="marquee__part" key={idx} style={{ color: marqueeTextColor }}>
+        <span>{text}</span>
+        <div className="marquee__img" style={{ backgroundImage: `url(${image})` }} />
+      </div>
+    ));
+  }, [repetitions, marqueeTextColor, text, image]);
+
   return (
     <div className="menu__item" ref={itemRef} style={{ borderColor }}>
       <a
@@ -147,12 +156,7 @@ function MenuItem({ link, text, image, speed, textColor, marqueeBgColor, marquee
       <div className="marquee" ref={marqueeRef} style={{ backgroundColor: marqueeBgColor }}>
         <div className="marquee__inner-wrap">
           <div className="marquee__inner" ref={marqueeInnerRef} aria-hidden="true">
-            {[...Array(repetitions)].map((_, idx) => (
-              <div className="marquee__part" key={idx} style={{ color: marqueeTextColor }}>
-                <span>{text}</span>
-                <div className="marquee__img" style={{ backgroundImage: `url(${image})` }} />
-              </div>
-            ))}
+            {marqueeParts}
           </div>
         </div>
       </div>
